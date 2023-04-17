@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-boot-test-docker-k8s
+  name: spring-boot-docker-k8s-test
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: spring-boot-test-docker-k8s
+      app: spring-boot-docker-k8s-test
   template:
     metadata:
       labels:
-        app: spring-boot-test-docker-k8s
+        app: spring-boot-docker-k8s-test
     spec:
       containers:
-        - name: spring-boot-test-docker-k8s
-          image: nensiskenderi/spring-boot-test-docker-k8s:v0.0.1
+        - name: spring-boot-docker-k8s-test
+          image: nensiskenderi/spring-boot-docker-k8s-test:v.0.0.1
           ports:
             - containerPort: 8080
