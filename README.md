@@ -7,7 +7,6 @@ Prerequisites:
 * kubernetes lens (optional)
 
 #### Here are the general steps to deploy a Spring Boot application to Kubernetes:
-
 1. **Create a Docker image of your Spring Boot application:** 
 Before you can deploy your Spring Boot application to Kubernetes, you need to create a Docker image of your application. You can do this by creating a Dockerfile that defines the build steps for your application.
 We will be using the multi-stage concept of Docker. You can find more info on that here:
@@ -34,6 +33,10 @@ To check if the image is created run:<br>
    `docker images`
 
 ![img_2.png](img_2.png)
+<br>
+<br>
+<br>
+<br>
 
 2. **Push the Docker image to a container registry:** 
    For training purposes I am using public Docker Hub registry so that Kubernetes
@@ -49,6 +52,10 @@ And use the following to push:<br>
 `docker push nensiskenderi/spring-boot-docker-k8s-test:v.0.0.1`
 
 ![img_3.png](img_3.png)
+<br>
+<br>
+<br>
+<br>
 
 3. **Create Local Kubernetes Cluster using Kind tool**
 
@@ -61,11 +68,19 @@ to create the local k8s using kind tool we execute the following command:<br>
    `kind create cluster --name first-cluster`
 
 ![img.png](img.png)
-   
+
+
+<br>
+<br>
+<br>
+<br>
+
 4. **Define Kubernetes deployment configuration:**
 Next, you need to define the Kubernetes deployment configuration for your application. This includes defining the Docker image to use, number of replicas, and any required environment variables.
-To do this, we create the file name deployment.yaml which you can find in the dir.
+To do this, we create the file name **_deployment.yaml_** which you can find in the dir.
 
+<br>
+<br>
 
 5. **Deploy the application to Kubernetes:**
    To deploy our app to Kubernetes we execute the following command:<br>
