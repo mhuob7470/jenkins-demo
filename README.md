@@ -14,17 +14,21 @@ We will be using the multi-stage concept of Docker. You can find more info on th
 
 Since we only need the jar file and not other files we perform multi-stage build like shown here:<br>
 
+```
 FROM --platform=linux/arm64/v8 maven:3.8.3-openjdk-17 AS build
 COPY src /app/src
 COPY pom.xml /app
 RUN mvn -f /app/pom.xml clean package
+```
 
 In the next step we just copy and run the jar file like shown here:<br>
 
+```
 FROM eclipse-temurin:17-jdk-jammy
 COPY --from=build /app/target/spring-boot-docker-k8s-0.0.1-SNAPSHOT.jar /app/app.jar
 EXPOSE 9090
 CMD ["java", "-jar", "/app/app.jar"]
+```
 
 To build the image run:<br>
    `docker build -t spring-boot-docker-k8s-test .`
