@@ -6,7 +6,7 @@ pipeline {
     }
       tools{
             jdk 'jdk17'
-            maven 'maven3'
+            maven 'jenkins-maven'
         }
     stages {
         stage('Checkout') {
