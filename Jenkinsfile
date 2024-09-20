@@ -18,25 +18,25 @@ pipeline {
         stage('Build') {
             steps {
                 // Build Spring Boot JAR on Windows
-                sh 'mvn clean package -DskipTests"'
+                bat 'mvn clean package -DskipTests"'
             }
         }
         stage('Docker Build') {
             steps {
                 // Build Docker image (use Docker Desktop)
-                sh "docker build -t %DOCKER_REGISTRY%/%DOCKER_IMAGE%:latest ."
+                bat "docker build -t %DOCKER_REGISTRY%/%DOCKER_IMAGE%:latest ."
             }
         }
         stage('Docker Push') {
             steps {
                 // Push Docker image to registry
-                sh "docker push %DOCKER_REGISTRY%/%DOCKER_IMAGE%:latest"
+                bat "docker push %DOCKER_REGISTRY%/%DOCKER_IMAGE%:latest"
             }
         }
         stage('Deploy to Kubernetes') {
             steps {
                 // Deploy to Kubernetes
-                sh 'kubectl apply -f deployment.yaml'
+                bat 'kubectl apply -f deployment.yaml'
             }
         }
     }
