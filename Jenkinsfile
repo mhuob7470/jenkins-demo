@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE = 'spring-boot-app'
     }
       tools{
-            jdk 'jdk17'
+
             maven 'jenkins-maven'
         }
     stages {
