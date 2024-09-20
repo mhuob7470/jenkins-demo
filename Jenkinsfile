@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build Spring Boot JAR on Windows
-                bat 'mvn -B -DskipTests clean package "'
+                bat 'cmd /c "mvn clean package -DskipTests"'
             }
         }
         stage('Docker Build') {
