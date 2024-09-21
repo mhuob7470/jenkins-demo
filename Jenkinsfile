@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = 'spring-boot-app'
+        DOCKER_HUB_REPO = 'abdu7470/spring-boot-app' // Change this to your Docker Hub username
     }
     tools {
         maven 'jenkins-maven'
@@ -22,18 +22,20 @@ pipeline {
         stage('Docker Build') {
             steps {
                 // Build Docker image
-                bat "docker build -t %DOCKER_IMAGE%:latest ."
+                bat "docker build -t %DOCKER_HUB_REPO%:latest ."
             }
         }
-        stage('Load Docker Image to Kubernetes') {
+        stage('Docker Push') {
             steps {
-                // Load Docker image into Docker Desktop Kubernetes
-                bat 'docker save %DOCKER_IMAGE%:latest | docker load'
+                // Login to Docker Hub
+                bat "docker login -u your-dockerhub-username -p your-dockerhub-password" // Replace with credentials or use Jenkins credentials
+                // Push Docker image to Docker Hub
+                bat "docker push %DOCKER_HUB_REPO%:latest"
             }
         }
         stage('Deploy to Kubernetes') {
             steps {
-                // Deploy to Kubernetes
+                // Deploy to Kubernetes using the image from Docker Hub
                 bat 'kubectl apply -f deployment.yaml --validate=false'
             }
         }
