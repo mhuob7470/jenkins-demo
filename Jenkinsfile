@@ -37,7 +37,7 @@ pipeline {
             steps {
                 // Deploy to Kubernetes using the image from Docker Hub
 //                 bat 'kind create cluster --name spring-cluster'
-                bat 'kubectl config use-context docker-desktop'
+//                 bat 'kubectl config use-context docker-desktop'
                 bat 'kubectl  apply -f deployment.yaml '
             }
         }
