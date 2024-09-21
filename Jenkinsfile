@@ -36,7 +36,7 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 // Deploy to Kubernetes using the image from Docker Hub
-                bat 'kubectl apply -f deployment.yaml  --validate=false'
+                bat 'kubectl --insecure-skip-tls-verify=true apply -f deployment.yaml'
             }
         }
     }
