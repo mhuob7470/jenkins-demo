@@ -25,6 +25,6 @@ metadata:
 spec:
   type: LoadBalancer  # Change to NodePort if needed for local testing
   ports:
-    - port: 8088
+    - port: 8080
   selector:
     app: spring-boot-app
