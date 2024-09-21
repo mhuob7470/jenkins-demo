@@ -28,7 +28,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 // Login to Docker Hub
-                bat "docker login -u your-dockerhub-username -p your-dockerhub-password" // Replace with credentials or use Jenkins credentials
+                bat "docker login -u abdu7470 -p Abdu461689#" // Replace with credentials or use Jenkins credentials
                 // Push Docker image to Docker Hub
                 bat "docker push %DOCKER_HUB_REPO%:latest"
             }
