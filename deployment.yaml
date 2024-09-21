@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
         - name: spring-boot-container
-          image: your-dockerhub-username/spring-boot-app:latest  # Update with your Docker Hub username
+          image: abdu7470/spring-boot-app:latest  # Update with your Docker Hub username
           ports:
-            - containerPort: 8080
+            - containerPort: 8088
 ---
 apiVersion: v1
 kind: Service
@@ -25,6 +25,6 @@ metadata:
 spec:
   type: LoadBalancer  # Change to NodePort if needed for local testing
   ports:
-    - port: 8080
+    - port: 8088
   selector:
     app: spring-boot-app
