@@ -1,13 +1,11 @@
 pipeline {
     agent any
     environment {
-        DOCKER_REGISTRY = 'localhost:5000'
         DOCKER_IMAGE = 'spring-boot-app'
     }
-      tools{
-
-            maven 'jenkins-maven'
-        }
+    tools {
+        maven 'jenkins-maven'
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -23,14 +21,14 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                // Build Docker image (use Docker Desktop)
-                bat "docker build -t %DOCKER_REGISTRY%/%DOCKER_IMAGE%:latest ."
+                // Build Docker image
+                bat "docker build -t %DOCKER_IMAGE%:latest ."
             }
         }
-        stage('Docker Push') {
+        stage('Load Docker Image to Kubernetes') {
             steps {
-                // Push Docker image to registry
-                bat "docker push %DOCKER_REGISTRY%/%DOCKER_IMAGE%:latest"
+                // Load Docker image into Docker Desktop Kubernetes
+                bat 'docker save %DOCKER_IMAGE%:latest | docker load'
             }
         }
         stage('Deploy to Kubernetes') {
@@ -42,10 +40,10 @@ pipeline {
     }
     post {
         success {
-            echo 'Build successful!'
+            echo 'Build and deployment successful!'
         }
         failure {
-            echo 'Build failed!'
+            echo 'Build or deployment failed!'
         }
     }
 }
