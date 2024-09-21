@@ -54,6 +54,9 @@ pipeline {
     environment {
         DOCKER_IMAGE = 'spring-boot-app'
     }
+        tools {
+            maven 'jenkins-maven'
+        }
     stages {
         stage('Checkout') {
             steps {
