@@ -1,3 +1,33 @@
+#apiVersion: apps/v1
+#kind: Deployment
+#metadata:
+#  name: spring-boot-app
+#spec:
+#  replicas: 3
+#  selector:
+#    matchLabels:
+#      app: spring-boot-app
+#  template:
+#    metadata:
+#      labels:
+#        app: spring-boot-app
+#    spec:
+#      containers:
+#        - name: spring-boot-container
+#          image: abdu7470/spring-boot-app:latest  # Update with your Docker Hub username
+#          ports:
+#            - containerPort: 8080
+#---
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: spring-boot-service
+#spec:
+#  type: LoadBalancer  # Change to NodePort if needed for local testing
+#  ports:
+#    - port: 8080
+#  selector:
+#    app: spring-boot-app
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,7 +44,7 @@ spec:
     spec:
       containers:
         - name: spring-boot-container
-          image: abdu7470/spring-boot-app:latest  # Update with your Docker Hub username
+          image: spring-boot-app:latest
           ports:
             - containerPort: 8080
 ---
@@ -23,7 +53,7 @@ kind: Service
 metadata:
   name: spring-boot-service
 spec:
-  type: LoadBalancer  # Change to NodePort if needed for local testing
+  type: LoadBalancer
   ports:
     - port: 8080
   selector:
