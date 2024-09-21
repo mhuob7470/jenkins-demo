@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/spring-boot-docker-k8s-0.0.1-SNAPSHOT.jar /app/spring-boot-docker-k8s-0.0.1-SNAPSHOT.jar
 
 # Expose port 8080 for Spring Boot
-EXPOSE 8088
+EXPOSE 8080
 
 # Run the Spring Boot application
 ENTRYPOINT ["java", "-jar", "/app/spring-boot-docker-k8s-0.0.1-SNAPSHOT.jar"]
