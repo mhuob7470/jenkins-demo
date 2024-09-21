@@ -16,7 +16,7 @@ spec:
         - name: spring-boot-container
           image: abdu7470/spring-boot-app:latest  # Update with your Docker Hub username
           ports:
-            - containerPort: 8088
+            - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
